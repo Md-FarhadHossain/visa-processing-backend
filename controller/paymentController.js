@@ -67,7 +67,7 @@ class paymentController {
 
         if (status === 'cancel' || status === 'failure') {
             console.log(req.query) // fail status
-            return res.redirect(`http://localhost:3000/fail?message=${status}`)
+            return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${status}`)
             
         }
         
@@ -111,14 +111,14 @@ class paymentController {
                         email: data.email
                     })
 
-                    return res.redirect(`http://localhost:3000/success`)
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/success`)
                 }else{
                     console.log(data)
-                    return res.redirect(`http://localhost:3000/fail?message=${data.statusMessage}`)
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${data.statusMessage}`)
                 }
             } catch (error) {
                 console.log(error)
-                return res.redirect(`http://localhost:3000/fail?message=${error.message}`)
+                return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${error.message}`)
             }
         }
     }
