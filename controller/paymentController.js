@@ -111,7 +111,7 @@ class paymentController {
                         email: data.email
                     })
 
-                    return res.redirect(`https://globalvisaprocessing.vercel.app/success`)
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/successs`)
                 }else{
                     console.log(data)
                     return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${data.statusMessage}`)
