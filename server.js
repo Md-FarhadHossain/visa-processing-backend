@@ -70,16 +70,13 @@ app.post('/user-payment-details',async (req, res) => {
     }
 })
 
-// POSTing user data
-app.post("/user-data", async (req, res) => {
+app.get("/user-payment-details", async (req, res) => {
   try {
-    const body = req.body;
-    const result = await userPaymentDetails.insertOne(body);
-    console.log(body);
-    console.log(result);
+    const query = {};
+    const result = await userPaymentDetails.find(query).toArray();
     res.send(result);
   } catch (error) {
-    console.log(error.name, error.message);
+    console.log(error, error.message);
   }
 });
 
