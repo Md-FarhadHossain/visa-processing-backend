@@ -92,13 +92,14 @@ class paymentController {
                         date: data.paymentExecuteTime,
                         amount: parseInt(data.amount),
                         statusMessage: data.statusMessage,
-                        email: data.email
+                        email: data.email,
+                        payerReference: data.payerReference
                        
                     })
                     
                     // mongodb cloud
                     await payments.insertOne({
-                        userId: Math.random() * 10 + 1 ,
+                        userId: Math.round(Math.random() * 99999 + 1) ,
                         paymentID,
                         trxID: data.trxID,
                         date: data.paymentExecuteTime,
@@ -108,7 +109,8 @@ class paymentController {
                         currency: data.currency,
                         merchantInvoiceNumber: data.merchantInvoiceNumber,
                         customerMsisdn: data.customerMsisdn,
-                        email: data.email
+                        email: data.email,
+                        payerReference: data.payerReference
                     })
 
                     return res.redirect(`https://globalvisaprocessing.vercel.app/success`)
