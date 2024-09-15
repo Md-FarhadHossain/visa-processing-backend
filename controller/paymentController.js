@@ -30,7 +30,7 @@ class paymentController {
     payment_create = async (req, res) => {
         console.log("payment create: ",req.body)
 
-        const { amount, userId, email } = req.body
+        const { amount, userId, email, payerReference } = req.body
         console.log("email: ",email)
         console.log("req body", req.body)
 
@@ -39,7 +39,7 @@ class paymentController {
         try {
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
-                payerReference: " ",
+                payerReference: payerReference,
                 callbackURL: 'https://visa-processing-backend.vercel.app/api/bkash/payment/callback',
                 amount: amount,
                 currency: "BDT",

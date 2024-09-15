@@ -33,6 +33,9 @@ const payment = new Schema({
     },
     userEmail: {
         type: String,
+    },
+    payerReference: {
+        type: Object
     }
 }, { timestamps: true })
 
