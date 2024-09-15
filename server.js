@@ -42,6 +42,7 @@ db()
 
 
 const payments = client.db("bkash-node-react").collection("payments")
+const paymentsUserData = client.db("bkash-node-react").collection("userData")
 const userPaymentDetails = client.db("bkash-node-react").collection("userPaymentDetails")
 const port = process.env.PORT
 
@@ -69,5 +70,18 @@ app.post('/user-payment-details',async (req, res) => {
         console.log(error.name, error.message)
     }
 })
+
+// POSTing user data
+app.post("/user-data", async (req, res) => {
+  try {
+    const body = req.body;
+    const result = await paymentsUserData.insertOne(body);
+    console.log(body);
+    console.log(result);
+    res.send(result);
+  } catch (error) {
+    console.log(error.name, error.message);
+  }
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
