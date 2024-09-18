@@ -60,7 +60,8 @@ app.get("/payments", async (req, res) => {
   app.get('/payments/:id', async (req, res) => {
     try{
       const { id } = req.params;
-      const query = { _id: new ObjectId(id) };
+      // const query = { _id: new ObjectId(id) };
+      const query = { trxID: id };
       const result = await payments.findOne(query);
       res.send(result);
     }
