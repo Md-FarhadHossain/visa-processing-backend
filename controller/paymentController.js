@@ -111,7 +111,7 @@ class paymentController {
                         payerReference: data.payerReference
                     })
 
-                    return res.redirect(`https://globalvisaprocessing.vercel.app/success/${data.trxID}`)
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/success`)
                 }else{
                     console.log(data)
                     return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${data.statusMessage}`)
