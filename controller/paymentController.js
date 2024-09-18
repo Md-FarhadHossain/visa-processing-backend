@@ -92,7 +92,6 @@ class paymentController {
                         date: data.paymentExecuteTime,
                         amount: parseInt(data.amount),
                         statusMessage: data.statusMessage,
-                        email: data.email,
                         payerReference: data.payerReference
                        
                     })
@@ -109,11 +108,10 @@ class paymentController {
                         currency: data.currency,
                         merchantInvoiceNumber: data.merchantInvoiceNumber,
                         customerMsisdn: data.customerMsisdn,
-                        email: data.email,
                         payerReference: data.payerReference
                     })
 
-                    return res.redirect(`https://globalvisaprocessing.vercel.app/success`)
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/success/${data._id}`)
                 }else{
                     console.log(data)
                     return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${data.statusMessage}`)

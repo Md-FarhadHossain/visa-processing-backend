@@ -57,6 +57,18 @@ app.get("/payments", async (req, res) => {
     }
   });
 
+  app.get('/payments/:id', async (req, res) => {
+    try{
+      const { id } = req.params;
+      const query = { _id: new ObjectId(id) };
+      const result = await payments.findOne(query);
+      res.send(result);
+    }
+    catch (error) {
+      console.log(error.nam, error.message);
+    }
+  })
+
 app.post('/user-payment-details',async (req, res) => {
     try {
         const userData = req.body
@@ -79,5 +91,6 @@ app.get("/user-payment-details", async (req, res) => {
     console.log(error, error.message);
   }
 });
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
