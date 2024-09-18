@@ -30,12 +30,8 @@ class paymentController {
     payment_create = async (req, res) => {
         console.log("payment create: ",req.body)
 
-        const { amount, userId, email, payerReference } = req.body
-        console.log("email: ",email)
-        console.log("req body", req.body)
-
-        globals.set('userId', userId)
-        globals.set('email', email)
+        const { amount, payerReference } = req.body
+    
         try {
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
@@ -45,8 +41,6 @@ class paymentController {
                 currency: "BDT",
                 intent: 'sale',
                 merchantInvoiceNumber: 'Inv' + uuidv4().substring(0, 5),
-                email: email
-
             }, {
                 headers: await this.bkash_headers()
             })
@@ -77,10 +71,6 @@ class paymentController {
                     headers: await this.bkash_headers()
                 })
 
-               
-              
-                               
-                console.log("line 81 ", data)
                 if (data && data.statusCode === '0000') {
                     await new Promise(resolve => setTimeout(resolve, 500))
                     console.log("paymentID, req query, and email:", paymentID, req.query, req.body);
