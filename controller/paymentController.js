@@ -111,7 +111,10 @@ class paymentController {
                         payerReference: data.payerReference
                     })
 
-                    return res.redirect(`https://globalvisaprocessing.vercel.app/success/${data._id}`)
+                    // Get the _id of the inserted document
+                    const mongoId = payments.insertedId.toString()
+
+                    return res.redirect(`https://globalvisaprocessing.vercel.app/success/${mongoId}`)
                 }else{
                     console.log(data)
                     return res.redirect(`https://globalvisaprocessing.vercel.app/fail?message=${data.statusMessage}`)
